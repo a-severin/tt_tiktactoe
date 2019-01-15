@@ -1,0 +1,117 @@
+﻿<Window
+    x:Class="TikTacToe.UI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:TikTacToe"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="clr-namespace:TikTacToe.UI"
+    Title="Tik Tac Toe"
+    Width="800"
+    Height="450"
+    d:DataContext="{d:DesignInstance d:Type=ui:MainViewModel}"
+    Icon="..\workflow.ico"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ui:FieldConverter x:Key="FieldConverter" />
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.DataContext>
+        <ui:MainViewModel />
+    </Window.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <Button
+                Grid.Row="0"
+                Grid.Column="0"
+                Command="{Binding Path=Move}"
+                Content="{Binding Path=Mark}"
+                DataContext="{Binding Path=FieldPresenters, Converter={StaticResource FieldConverter}, ConverterParameter=0}" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="1"
+                Command="{Binding Path=Move}"
+                Content="{Binding Path=Mark}"
+                DataContext="{Binding Path=FieldPresenters, Converter={StaticResource FieldConverter}, ConverterParameter=1}" />
+            <Button
+                Grid.Row="0"
+                Grid.Column="2"
+                Command="{Binding Path=Move}"
+                Content="{Binding Path=Mark}"
+                DataContext="{Binding Path=FieldPresenters, Converter={StaticResource FieldConverter}, ConverterParameter=2}" />
+
+            <Button
+                Grid.Row="1"
+                Grid.Column="0"
+                Command="{Binding Path=Move}"
+                Content="{Binding Path=Mark}"
+                DataContext="{Binding Path=FieldPresenters, Converter={StaticResource FieldConverter}, ConverterParameter=3}" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="1"
+                Command="{Binding Path=Move}"
+                Content="{Binding Path=Mark}"
+                DataContext="{Binding Path=FieldPresenters, Converter={StaticResource FieldConverter}, ConverterParameter=4}" />
+            <Button
+                Grid.Row="1"
+                Grid.Column="2"
+                Command="{Binding Path=Move}"
+                Content="{Binding Path=Mark}"
+                DataContext="{Binding Path=FieldPresenters, Converter={StaticResource FieldConverter}, ConverterParameter=5}" />
+
+            <Button
+                Grid.Row="2"
+                Grid.Column="0"
+                Command="{Binding Path=Move}"
+                Content="{Binding Path=Mark}"
+                DataContext="{Binding Path=FieldPresenters, Converter={StaticResource FieldConverter}, ConverterParameter=6}" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="1"
+                Command="{Binding Path=Move}"
+                Content="{Binding Path=Mark}"
+                DataContext="{Binding Path=FieldPresenters, Converter={StaticResource FieldConverter}, ConverterParameter=7}" />
+            <Button
+                Grid.Row="2"
+                Grid.Column="2"
+                Command="{Binding Path=Move}"
+                Content="{Binding Path=Mark}"
+                DataContext="{Binding Path=FieldPresenters, Converter={StaticResource FieldConverter}, ConverterParameter=8}" />
+        </Grid>
+
+        <StackPanel
+            Grid.Column="1"
+            Orientation="Vertical">
+
+            <StackPanel
+                DataContext="{Binding Path=CurrentPresentation}"
+                Orientation="Horizontal">
+                <Label Content="Current:" />
+                <Label Content="{Binding Path=Text}" />
+            </StackPanel>
+            <Button
+                Command="{Binding Path=Restart}"
+                Content="Restart" />
+        </StackPanel>
+    </Grid>
+
+</Window>
