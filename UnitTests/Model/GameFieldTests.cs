@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TikTacToe.Model;
 
-namespace UnitTests
+namespace UnitTests.Model
 {
     [TestClass]
     [ExcludeFromCodeCoverage]

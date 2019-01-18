@@ -1,9 +1,8 @@
-﻿using System;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using TikTacToe.Model;
 
-namespace UnitTests
+namespace UnitTests.Model
 {
     [TestClass]
     public class GameSessionTests
@@ -27,9 +26,12 @@ namespace UnitTests
         public void Next_ChangeCurrentMark()
         {
             var gameSession = new GameSession();
+
             gameSession.Next();
             Assert.AreEqual(GameMark.O, gameSession.CurrentMark());
 
+            gameSession.Next();
+            Assert.AreEqual(GameMark.X, gameSession.CurrentMark());
         }
 
         [TestMethod]
@@ -38,9 +40,10 @@ namespace UnitTests
             var gameSession = new GameSession();
             var invoked = false;
             gameSession.GameEvent += (sender, args) => { invoked = true; };
-            gameSession.Next();
-            Assert.IsTrue(invoked);
 
+            gameSession.Next();
+
+            Assert.IsTrue(invoked);
         }
 
         [TestMethod]
@@ -48,7 +51,9 @@ namespace UnitTests
         {
             var gameSession = new GameSession();
             var field = gameSession.CurrentGameField();
+
             gameSession.Restart();
+
             Assert.AreNotEqual(field, gameSession.CurrentGameField());
         }
 
@@ -58,7 +63,9 @@ namespace UnitTests
             var gameSession = new GameSession();
             var invoked = false;
             gameSession.GameRestarted += (sender, args) => { invoked = true; };
+
             gameSession.Restart();
+
             Assert.IsTrue(invoked);
         }
     }
